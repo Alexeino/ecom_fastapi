@@ -3,8 +3,8 @@ from sqlalchemy.orm import relationship
 from db.base_model import Model
 
 class Category(Model):
-    id = Column(Integer,primary_key=True)
-    name = Column(String,nullable=False)
+    id = Column(Integer,primary_key=True,autoincrement=True)
+    name = Column(String,nullable=False,unique=True)
     
     # Relationship
     products = relationship("Product",back_populates="category")
@@ -16,4 +16,6 @@ class Product(Model):
     description = Column(Text,nullable=True)
     created_at = Column(DateTime)
     
-    categor_id = Column(Integer,ForeignKey("category.id"))
+    category_id = Column(Integer,ForeignKey("category.id"))
+    
+    category = relationship("Category",back_populates="products")

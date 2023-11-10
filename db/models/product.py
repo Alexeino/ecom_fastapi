@@ -10,7 +10,7 @@ class Category(Model):
     products = relationship("Product",back_populates="category")
 
 class Product(Model):
-    id = Column(Integer,primary_key=True)
+    id = Column(Integer,primary_key=True,autoincrement=True)
     name = Column(String,nullable=False)
     price = Column(Integer)
     description = Column(Text,nullable=True)

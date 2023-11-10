@@ -36,3 +36,10 @@ def get_category_by_id(id:int,db:Session):
     if not category:
         return HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     return category
+
+def get_all_products(db:Session,id:int):
+    if id:
+        product = db.query(Product).filter(Product.id == id).first()
+        return product
+    products = db.query(Product).all()
+    return products

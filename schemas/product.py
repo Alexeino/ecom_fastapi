@@ -3,6 +3,7 @@ from typing import Text, Optional
 
 class CategoryCreate(BaseModel):
     name: str = Field(min_length=3,alias="Category Name")
+    is_active: bool
     
 class ProductSchema(BaseModel):
     name: str = Field(min_length=3,alias="Product Name")

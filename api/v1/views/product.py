@@ -7,7 +7,8 @@ from fastapi import status
 
 def create_new_category(category: CategoryCreate,db:Session):
     category = Category(
-        name= category.name
+        name= category.name,
+        is_active = category.is_active
     )
     db.add(category)
     db.commit()

@@ -1,11 +1,11 @@
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from db.base_model import Model
 
 class Category(Model):
     id = Column(Integer,primary_key=True,autoincrement=True)
     name = Column(String,nullable=False,unique=True)
-    
+    is_active = Column(Boolean,nullable=True)
     # Relationship
     products = relationship("Product",back_populates="category")
 

@@ -6,7 +6,7 @@ from schemas.product import CategoryCreate, ProductSchema
 from db.session import get_db
 from api.v1.views.product import create_new_category, \
 create_new_product, get_all_categories, get_category_by_id , \
-get_all_products
+get_all_products, update_category_by_id
 
 product_router = APIRouter()
 category_router = APIRouter()
@@ -27,6 +27,10 @@ def get_category(id:int, db:Session = Depends(get_db)):
     category = get_category_by_id(id=id,db=db)
     return category
 
+@category_router.put("/{id}")
+def update_category(id: int, category: CategoryCreate, db: Session = Depends(get_db)):
+    category = update_category_by_id(id=id,category=category,db=db)
+    return category
 
 @product_router.post("/add")
 def create_product(product: ProductSchema, db: Session = Depends(get_db),category_id:int = 1):

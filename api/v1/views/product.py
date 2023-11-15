@@ -15,6 +15,18 @@ def create_new_category(category: CategoryCreate,db:Session):
     db.refresh(category)
     return category
 
+def update_category_by_id(id:int, category:CategoryCreate,db:Session):
+    category_db = db.query(Category).filter(Category.id == id).first()
+    if category_db:
+        data = category.model_dump()
+        for key, val in data.items():
+            setattr(category_db,key,val)
+        db.commit()
+        db.refresh(category_db)
+        return category_db
+    else:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Category not found")
+
 def create_new_product(product:ProductSchema, db: Session,category_id:int):
     product = Product(
         name = product.name,

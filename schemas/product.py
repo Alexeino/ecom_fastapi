@@ -8,7 +8,11 @@ class CategoryCreate(BaseModel):
 class ProductSchema(BaseModel):
     name: str = Field(min_length=3,alias="Product Name")
     price: int = Field(gt=0)
-    description: Optional[str] = None
+    description: str | None = None
     
     class config():
         orm_mode = True
+        
+class SubCategorySchema(BaseModel):
+    name: str = Field(min_length=3,alias="Sub Category Name")
+    description: str | None = None

@@ -19,3 +19,7 @@ upgrade:
 runserver:
 	echo "Starting Uvicorn"
 	uvicorn main:app --reload
+
+test:
+	echo "Running Unit Tests"
+	pytest -vs

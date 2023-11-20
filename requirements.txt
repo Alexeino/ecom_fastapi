@@ -4,3 +4,5 @@ alembic
 uvicorn[standard]
 python-dotenv
 psycopg2-binary
+pytest
+httpx
